@@ -22,3 +22,7 @@ You should complete both parts of the assignment and make your submission no lat
 ### Magrittr Piping Example
 
 Provides a comparison of performing data wrangling on a heart disease dataset with and without using the %>% and %<>% Magrittr pipe operators.
+
+### Extension - Austin Chan - Unary Functions
+
+I added a section about unary functions using the magrittr.
