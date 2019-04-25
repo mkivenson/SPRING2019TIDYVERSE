@@ -30,6 +30,9 @@ To begin testing Magrittr, we import a [Heart Disease dataset](https://www.kaggl
 
 ```{r original, message=FALSE, warning=FALSE}
 heart <- read.csv("https://raw.githubusercontent.com/mkivenson/Data-Acquisition-and-Management/master/TidyVerse/heart.csv")
+heart = rename(heart,age = ï..age)
+heart2 = heart
+
 datatable(heart)
 ```
 
@@ -59,7 +62,6 @@ data <- heart %>%
   filter((age <= 50) & (sex == 0)) %>%
   gather("metric", "value", 3:4) %>%
   arrange(age)
-
 datatable(data)
 ```
 
@@ -73,10 +75,30 @@ heart %<>%
   filter((age <= 50) & (sex == 0)) %>%
   gather("metric", "value", 3:4) %>%
   arrange(age)
-
 datatable(heart)
 ```
 
 ### Potential Expansion
 
-Other magrittr operators include the %T>% and %$% pipes.
+Other magrittr operators include the %T>% and %$% pipes
+
+***
+
+##Extension - Austin Chan - Building Unary Functions with .
+
+One interesting feature of the magrittr package is its ability to create unary functions with pipe operators. Unary functions are functions that accept one input and apply piping operators to the input. Essentially, unary functions allow users to create a function for a complicated or long piping process and condense it into one function call. This can be useful if a user is performing the same operations multiple times on similarly structured data. 
+
+Using the example presented about the %<>% operator, I can condense the entire operation into one easy function using ".".
+
+```{r}
+pipeassign = . %>% 
+  select(age, sex, trestbps, chol) %>%
+  filter((age <= 50) & (sex == 0)) %>%
+  gather("metric", "value", 3:4) %>%
+  arrange(age) %>%
+  datatable()
+
+pipeassign(heart2)
+```
+
+
